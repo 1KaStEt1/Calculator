@@ -1,0 +1,36 @@
+import java.util.Scanner;
+
+public class Calculator {
+    public static void main(String[] args){
+        String[] oper = {"+","-","*","/"};
+        String[] regexOp = {"\\+","-","\\*","/"};
+        System.out.println("Введите выражение");
+        Scanner scan = new Scanner(System.in);
+        String expression = scan.nextLine();
+        int i;
+        int operIndex = -1;
+        for(i = 0; i < oper.length; i++);{
+            if (expression.contains(oper[i])) {
+                operIndex = i;
+                return;
+            }
+        }
+        if (operIndex == -1){
+            System.out.print("Некорректное выражение");
+            return;
+        }
+        String[] num = expression.split(regexOp[operIndex]);
+        int a,b;
+        a = Integer.parseInt(num[0]);
+        b = Integer.parseInt(num[0]);
+
+        int result = switch (oper[operIndex]) {
+            case "+" -> a + b;
+            case "-" -> a - b;
+            case "*" -> a * b;
+            case "/" -> a / b;
+            default -> 0;
+        };
+        System.out.println(result);
+    }
+}
